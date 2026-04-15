@@ -3,6 +3,8 @@ import Layout from '../layouts/Layout.astro';
 import LandingDemo from '../components/LandingDemo';
 import ContactForm from '../components/ContactForm';
 
+const APP_URL = 'https://saas-gigflow-pro.vercel.app';
+
 const schema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
@@ -39,8 +41,8 @@ const schema = {
         <span class="font-semibold tracking-tight">GigFlow Pro</span>
       </div>
       <div class="flex items-center gap-3">
-        <a href="/login" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors rounded-lg hover:bg-gray-100">Log In</a>
-        <a href="/signup" class="px-4 py-2 text-sm font-semibold rounded-lg transition-colors" style="background: hsl(40,90%,55%); color: hsl(220,15%,10%)">Get Started</a>
+        <a href={`${APP_URL}/login`} class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors rounded-lg hover:bg-gray-100">Log In</a>
+        <a href={`${APP_URL}/signup`} class="px-4 py-2 text-sm font-semibold rounded-lg transition-colors" style="background: hsl(40,90%,55%); color: hsl(220,15%,10%)">Get Started</a>
       </div>
     </div>
   </nav>
@@ -59,7 +61,7 @@ const schema = {
           The project management tool that covers your entire workflow — from booking to final payment — in one clean dashboard.
         </p>
         <div class="flex flex-col sm:flex-row gap-3">
-          <a href="/signup" class="inline-flex items-center justify-center gap-2 h-12 px-8 rounded-xl text-base font-semibold transition-colors" style="background: hsl(220,15%,13%); color: hsl(40,20%,98%)">
+          <a href={`${APP_URL}/signup`} class="inline-flex items-center justify-center gap-2 h-12 px-8 rounded-xl text-base font-semibold transition-colors" style="background: hsl(220,15%,13%); color: hsl(40,20%,98%)">
             Start Free Trial →
           </a>
           <a href="#features" class="inline-flex items-center justify-center h-12 px-8 rounded-xl text-base font-medium border transition-colors hover:bg-gray-50" style="border-color: hsl(220,10%,90%)">
@@ -140,7 +142,7 @@ const schema = {
           <span style="color: hsl(220,10%,50%)">/month</span>
         </div>
         <p class="text-xs" style="color: hsl(220,10%,50%)">or €250/year (save €98)</p>
-        <a href="/signup" class="block w-full h-12 leading-[3rem] rounded-xl text-base font-semibold transition-colors" style="background: hsl(220,15%,13%); color: hsl(40,20%,98%)">
+        <a href={`${APP_URL}/signup`} class="block w-full h-12 leading-[3rem] rounded-xl text-base font-semibold transition-colors" style="background: hsl(220,15%,13%); color: hsl(40,20%,98%)">
           Start 14-Day Free Trial
         </a>
         <p class="text-xs" style="color: hsl(220,10%,50%)">Cancel anytime · Early access members lock in this price forever.</p>
