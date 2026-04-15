@@ -1,0 +1,10 @@
+{
+  "rewrites": [
+    { "source": "/dashboard/:path*", "destination": "https://gigflowpro-app.vercel.app/dashboard/:path*" },
+    { "source": "/login", "destination": "https://gigflowpro-app.vercel.app/login" },
+    { "source": "/signup", "destination": "https://gigflowpro-app.vercel.app/signup" },
+    { "source": "/approve/:path*", "destination": "https://gigflowpro-app.vercel.app/approve/:path*" },
+    { "source": "/settings/:path*", "destination": "https://gigflowpro-app.vercel.app/settings/:path*" },
+    { "source": "/projects/:path*", "destination": "https://gigflowpro-app.vercel.app/projects/:path*" }
+  ]
+}
