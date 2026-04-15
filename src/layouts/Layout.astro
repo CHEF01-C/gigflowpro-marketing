@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import CookieBanner from '../components/CookieBanner';
 
 interface Props {
   title: string;
@@ -39,16 +40,24 @@ const {
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L2KN5H42NG"></script>
+    <!-- Analytics loaded only after cookie consent (see CookieBanner component) -->
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-L2KN5H42NG');
+      if (typeof localStorage !== 'undefined' && localStorage.getItem('cookie_consent') === 'accepted') {
+        var s = document.createElement('script');
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-L2KN5H42NG';
+        s.async = true;
+        document.head.appendChild(s);
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-L2KN5H42NG');
+        window.gtag = gtag;
+        window.__gaLoaded = true;
+      }
     </script>
   </head>
   <body>
     <slot />
+    <CookieBanner client:load />
   </body>
 </html>
