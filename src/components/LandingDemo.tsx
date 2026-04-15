@@ -118,9 +118,68 @@ function DashboardTab() {
   );
 }
 
+function NewProjectModal({ onClose }: { onClose: () => void }) {
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      style={{ background: 'rgba(0,0,0,0.7)' }}
+      onClick={e => { if (e.target === e.currentTarget) onClose(); }}
+    >
+      <div className="rounded-2xl border w-full max-w-lg max-h-[90vh] overflow-y-auto p-6 space-y-4" style={{ background: 'hsl(220,14%,13%)', borderColor: BORDER }}>
+        <div className="flex items-center justify-between">
+          <h3 className="text-base font-semibold">Create New Project</h3>
+          <button onClick={onClose} className="text-lg leading-none transition-colors" style={{ color: MUTED }}>✕</button>
+        </div>
+        <form onSubmit={e => { e.preventDefault(); onClose(); }} className="space-y-4">
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-1.5 col-span-2">
+              <label className="text-xs font-medium" style={{ color: MUTED }}>Client Name *</label>
+              <input defaultValue="Emma & James Thompson" className="w-full rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-1" style={{ borderColor: BORDER, background: 'hsl(220,14%,18%)', color: 'hsl(40,20%,90%)', '--tw-ring-color': 'hsl(40,90%,55%)' } as React.CSSProperties} />
+            </div>
+            <div className="space-y-1.5 col-span-2">
+              <label className="text-xs font-medium" style={{ color: MUTED }}>Client Email</label>
+              <input type="email" placeholder="client@email.com" className="w-full rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-1 placeholder:opacity-40" style={{ borderColor: BORDER, background: 'hsl(220,14%,18%)', color: 'hsl(40,20%,90%)', '--tw-ring-color': 'hsl(40,90%,55%)' } as React.CSSProperties} />
+            </div>
+            <div className="space-y-1.5">
+              <label className="text-xs font-medium" style={{ color: MUTED }}>Project Type</label>
+              <select defaultValue="wedding" className="w-full rounded-lg border px-3 py-2 text-sm focus:outline-none" style={{ borderColor: BORDER, background: 'hsl(220,14%,18%)', color: 'hsl(40,20%,90%)' }}>
+                <option value="wedding">Wedding</option>
+                <option value="event">Event</option>
+                <option value="commercial">Commercial</option>
+                <option value="portrait">Portrait</option>
+              </select>
+            </div>
+            <div className="space-y-1.5">
+              <label className="text-xs font-medium" style={{ color: MUTED }}>Price (€) *</label>
+              <input type="number" defaultValue="3500" className="w-full rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-1" style={{ borderColor: BORDER, background: 'hsl(220,14%,18%)', color: 'hsl(40,20%,90%)', '--tw-ring-color': 'hsl(40,90%,55%)' } as React.CSSProperties} />
+            </div>
+            <div className="space-y-1.5">
+              <label className="text-xs font-medium" style={{ color: MUTED }}>Shoot Date *</label>
+              <input type="date" defaultValue="2026-06-14" className="w-full rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-1" style={{ borderColor: BORDER, background: 'hsl(220,14%,18%)', color: 'hsl(40,20%,90%)', '--tw-ring-color': 'hsl(40,90%,55%)' } as React.CSSProperties} />
+            </div>
+            <div className="space-y-1.5">
+              <label className="text-xs font-medium" style={{ color: MUTED }}>Delivery Date *</label>
+              <input type="date" defaultValue="2026-07-14" className="w-full rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-1" style={{ borderColor: BORDER, background: 'hsl(220,14%,18%)', color: 'hsl(40,20%,90%)', '--tw-ring-color': 'hsl(40,90%,55%)' } as React.CSSProperties} />
+            </div>
+            <div className="space-y-1.5 col-span-2">
+              <label className="text-xs font-medium" style={{ color: MUTED }}>Notes</label>
+              <textarea rows={3} defaultValue="Ceremony in Copenhagen at Frederiksberg Have. 400 photos expected." className="w-full rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-1 resize-none" style={{ borderColor: BORDER, background: 'hsl(220,14%,18%)', color: 'hsl(40,20%,90%)', '--tw-ring-color': 'hsl(40,90%,55%)' } as React.CSSProperties} />
+            </div>
+          </div>
+          <div className="flex justify-end gap-2 pt-1">
+            <button type="button" onClick={onClose} className="px-4 py-2 rounded-lg border text-sm font-medium transition-colors hover:bg-white/[0.05]" style={{ borderColor: BORDER, color: MUTED }}>Cancel</button>
+            <button type="submit" className="px-4 py-2 rounded-lg text-sm font-semibold transition-colors" style={{ background: 'hsl(40,90%,55%)', color: 'hsl(220,15%,10%)' }}>Create Project</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
+
 function ProjectsTab() {
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState<ProjectStatus | 'all'>('all');
+  const [modalOpen, setModalOpen] = useState(false);
   const statuses: Array<ProjectStatus | 'all'> = ['all', 'booked', 'shot', 'editing', 'delivered', 'approved', 'paid'];
   const filtered = demoProjects.filter(p => {
     const matchSearch = p.clientName.toLowerCase().includes(search.toLowerCase());
@@ -130,7 +189,20 @@ function ProjectsTab() {
 
   return (
     <div className="p-6 space-y-4" style={{ background: SURFACE }}>
-      <h2 className="text-xl font-semibold" style={{ fontFamily: 'Playfair Display, serif' }}>Projects</h2>
+      {modalOpen && <NewProjectModal onClose={() => setModalOpen(false)} />}
+      <div className="flex items-center justify-between">
+        <div>
+          <h2 className="text-xl font-semibold" style={{ fontFamily: 'Playfair Display, serif' }}>Projects</h2>
+          <p className="text-sm mt-0.5" style={{ color: MUTED }}>{demoProjects.length} total projects</p>
+        </div>
+        <button
+          onClick={() => setModalOpen(true)}
+          className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium transition-colors"
+          style={{ background: 'hsl(40,90%,55%)', color: 'hsl(220,15%,10%)' }}
+        >
+          + New Project
+        </button>
+      </div>
       <div className="flex flex-wrap gap-2">
         <input
           className="rounded-lg border px-3 py-1.5 text-sm focus:outline-none focus:ring-1"
