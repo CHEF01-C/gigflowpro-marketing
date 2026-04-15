@@ -12,20 +12,25 @@ const demoProjects = [
 ];
 
 const STATUS_COLORS: Record<ProjectStatus, string> = {
-  booked: 'bg-blue-100 text-blue-700 border-blue-200',
-  shot: 'bg-amber-100 text-amber-700 border-amber-200',
-  editing: 'bg-yellow-100 text-yellow-700 border-yellow-200',
-  delivered: 'bg-gray-100 text-gray-600 border-gray-200',
-  approved: 'bg-green-100 text-green-700 border-green-200',
-  paid: 'bg-green-100 text-green-800 border-green-300',
+  booked: 'bg-blue-500/15 text-blue-300 border-blue-500/30',
+  shot: 'bg-amber-500/15 text-amber-300 border-amber-500/30',
+  editing: 'bg-yellow-500/15 text-yellow-300 border-yellow-500/30',
+  delivered: 'bg-slate-500/20 text-slate-300 border-slate-500/30',
+  approved: 'bg-green-500/15 text-green-300 border-green-500/30',
+  paid: 'bg-green-500/20 text-green-200 border-green-500/40',
 };
 
 const TYPE_COLORS: Record<ProjectType, string> = {
-  wedding: 'bg-pink-100 text-pink-700',
-  event: 'bg-purple-100 text-purple-700',
-  commercial: 'bg-blue-100 text-blue-700',
-  portrait: 'bg-orange-100 text-orange-700',
+  wedding: 'bg-pink-500/15 text-pink-300',
+  event: 'bg-purple-500/15 text-purple-300',
+  commercial: 'bg-blue-500/15 text-blue-300',
+  portrait: 'bg-orange-500/15 text-orange-300',
 };
+
+const BORDER = 'hsl(220,10%,22%)';
+const SURFACE = 'hsl(220,14%,12%)';
+const SURFACE2 = 'hsl(220,14%,16%)';
+const MUTED = 'hsl(220,10%,58%)';
 
 function StatusBadge({ status }: { status: ProjectStatus }) {
   return (
@@ -53,10 +58,10 @@ function DashboardTab() {
   const deadlines = demoProjects.filter(p => ['editing', 'shot', 'booked'].includes(p.status)).sort((a, b) => new Date(a.deliveryDate).getTime() - new Date(b.deliveryDate).getTime());
 
   return (
-    <div className="p-6 space-y-6 bg-white">
+    <div className="p-6 space-y-6" style={{ background: SURFACE }}>
       <div>
         <h2 className="text-xl font-semibold" style={{ fontFamily: 'Playfair Display, serif' }}>Dashboard</h2>
-        <p className="text-sm text-gray-500 mt-0.5">Welcome back. Here's your overview.</p>
+        <p className="text-sm mt-0.5" style={{ color: MUTED }}>Welcome back. Here's your overview.</p>
       </div>
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         {[
@@ -65,42 +70,42 @@ function DashboardTab() {
           { title: 'Upcoming Deadlines', value: deadlines.length, sub: 'Next 30 days' },
           { title: 'Completed', value: demoProjects.filter(p => p.status === 'paid').length, sub: 'Fully paid' },
         ].map(card => (
-          <div key={card.title} className="rounded-xl border p-4" style={{ borderColor: 'hsl(220,10%,90%)' }}>
-            <p className="text-xs text-gray-500">{card.title}</p>
+          <div key={card.title} className="rounded-xl border p-4" style={{ borderColor: BORDER, background: 'hsl(220,14%,15%)' }}>
+            <p className="text-xs" style={{ color: MUTED }}>{card.title}</p>
             <p className="text-2xl font-semibold mt-1">{card.value}</p>
-            <p className="text-xs text-gray-400 mt-0.5">{card.sub}</p>
+            <p className="text-xs mt-0.5" style={{ color: 'hsl(220,10%,45%)' }}>{card.sub}</p>
           </div>
         ))}
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <div className="rounded-xl border" style={{ borderColor: 'hsl(220,10%,90%)' }}>
-          <div className="flex items-center justify-between p-4 border-b" style={{ borderColor: 'hsl(220,10%,90%)' }}>
+        <div className="rounded-xl border" style={{ borderColor: BORDER }}>
+          <div className="flex items-center justify-between p-4 border-b" style={{ borderColor: BORDER }}>
             <h3 className="text-sm font-semibold">Upcoming Deadlines</h3>
           </div>
-          <div className="divide-y" style={{ '--tw-divide-opacity': '1' }}>
+          <div className="divide-y" style={{ borderColor: BORDER }}>
             {deadlines.map(p => (
-              <div key={p.id} className="flex items-center justify-between p-3">
+              <div key={p.id} className="flex items-center justify-between p-3" style={{ borderColor: BORDER }}>
                 <div>
                   <p className="text-sm font-medium">{p.clientName}</p>
-                  <p className="text-xs text-gray-500">Due {fmt(p.deliveryDate)}</p>
+                  <p className="text-xs" style={{ color: MUTED }}>Due {fmt(p.deliveryDate)}</p>
                 </div>
                 <StatusBadge status={p.status} />
               </div>
             ))}
           </div>
         </div>
-        <div className="rounded-xl border" style={{ borderColor: 'hsl(220,10%,90%)' }}>
-          <div className="flex items-center justify-between p-4 border-b" style={{ borderColor: 'hsl(220,10%,90%)' }}>
+        <div className="rounded-xl border" style={{ borderColor: BORDER }}>
+          <div className="flex items-center justify-between p-4 border-b" style={{ borderColor: BORDER }}>
             <h3 className="text-sm font-semibold">Outstanding Payments</h3>
           </div>
           <div>
             {demoProjects.filter(p => !p.fullPaymentReceived).map(p => {
               const owed = p.price - (p.depositReceived ? p.depositAmount : 0);
               return (
-                <div key={p.id} className="flex items-center justify-between p-3 border-b last:border-0" style={{ borderColor: 'hsl(220,10%,90%)' }}>
+                <div key={p.id} className="flex items-center justify-between p-3 border-b last:border-0" style={{ borderColor: BORDER }}>
                   <div>
                     <p className="text-sm font-medium">{p.clientName}</p>
-                    <p className="text-xs text-gray-500">{p.depositReceived ? 'Deposit received' : 'No deposit'}</p>
+                    <p className="text-xs" style={{ color: MUTED }}>{p.depositReceived ? 'Deposit received' : 'No deposit'}</p>
                   </div>
                   <span className="text-sm font-semibold">€{owed.toLocaleString()}</span>
                 </div>
@@ -124,12 +129,12 @@ function ProjectsTab() {
   });
 
   return (
-    <div className="p-6 space-y-4 bg-white">
+    <div className="p-6 space-y-4" style={{ background: SURFACE }}>
       <h2 className="text-xl font-semibold" style={{ fontFamily: 'Playfair Display, serif' }}>Projects</h2>
       <div className="flex flex-wrap gap-2">
         <input
           className="rounded-lg border px-3 py-1.5 text-sm focus:outline-none focus:ring-1"
-          style={{ borderColor: 'hsl(220,10%,90%)', '--tw-ring-color': 'hsl(40,90%,55%)' } as React.CSSProperties}
+          style={{ borderColor: BORDER, background: 'hsl(220,14%,18%)', color: 'hsl(40,20%,90%)', '--tw-ring-color': 'hsl(40,90%,55%)' } as React.CSSProperties}
           placeholder="Search clients..."
           value={search}
           onChange={e => setSearch(e.target.value)}
@@ -137,36 +142,38 @@ function ProjectsTab() {
         <div className="flex flex-wrap gap-1">
           {statuses.map(s => (
             <button key={s} onClick={() => setFilter(s)}
-              className={`px-2.5 py-1 rounded-full text-xs font-medium transition-colors capitalize ${filter === s ? 'text-white' : 'bg-gray-100 text-gray-500 hover:text-gray-700'}`}
-              style={filter === s ? { backgroundColor: 'hsl(40,90%,55%)' } : {}}>
+              className="px-2.5 py-1 rounded-full text-xs font-medium transition-colors capitalize"
+              style={filter === s
+                ? { backgroundColor: 'hsl(40,90%,55%)', color: 'hsl(220,15%,10%)' }
+                : { backgroundColor: 'hsl(220,14%,20%)', color: MUTED }}>
               {s === 'all' ? 'All' : s}
             </button>
           ))}
         </div>
       </div>
-      <div className="rounded-xl border overflow-hidden" style={{ borderColor: 'hsl(220,10%,90%)' }}>
+      <div className="rounded-xl border overflow-hidden" style={{ borderColor: BORDER }}>
         <table className="w-full">
           <thead>
-            <tr className="border-b bg-gray-50" style={{ borderColor: 'hsl(220,10%,90%)' }}>
-              <th className="text-left text-xs font-medium text-gray-500 px-4 py-3">Client</th>
-              <th className="text-left text-xs font-medium text-gray-500 px-4 py-3 hidden sm:table-cell">Type</th>
-              <th className="text-left text-xs font-medium text-gray-500 px-4 py-3 hidden md:table-cell">Delivery</th>
-              <th className="text-left text-xs font-medium text-gray-500 px-4 py-3">Price</th>
-              <th className="text-left text-xs font-medium text-gray-500 px-4 py-3">Status</th>
+            <tr className="border-b" style={{ borderColor: BORDER, background: 'hsl(220,14%,15%)' }}>
+              <th className="text-left text-xs font-medium px-4 py-3" style={{ color: MUTED }}>Client</th>
+              <th className="text-left text-xs font-medium px-4 py-3 hidden sm:table-cell" style={{ color: MUTED }}>Type</th>
+              <th className="text-left text-xs font-medium px-4 py-3 hidden md:table-cell" style={{ color: MUTED }}>Delivery</th>
+              <th className="text-left text-xs font-medium px-4 py-3" style={{ color: MUTED }}>Price</th>
+              <th className="text-left text-xs font-medium px-4 py-3" style={{ color: MUTED }}>Status</th>
             </tr>
           </thead>
           <tbody>
             {filtered.map(p => (
-              <tr key={p.id} className="border-b last:border-0 hover:bg-gray-50 transition-colors" style={{ borderColor: 'hsl(220,10%,90%)' }}>
+              <tr key={p.id} className="border-b last:border-0 transition-colors hover:bg-white/[0.03]" style={{ borderColor: BORDER }}>
                 <td className="px-4 py-3 text-sm font-medium">{p.clientName}</td>
                 <td className="px-4 py-3 hidden sm:table-cell"><TypeBadge type={p.projectType} /></td>
-                <td className="px-4 py-3 text-sm text-gray-600 hidden md:table-cell">{fmt(p.deliveryDate)}</td>
+                <td className="px-4 py-3 text-sm hidden md:table-cell" style={{ color: MUTED }}>{fmt(p.deliveryDate)}</td>
                 <td className="px-4 py-3 text-sm">€{p.price.toLocaleString()}</td>
                 <td className="px-4 py-3"><StatusBadge status={p.status} /></td>
               </tr>
             ))}
             {filtered.length === 0 && (
-              <tr><td colSpan={5} className="px-4 py-8 text-center text-sm text-gray-400">No projects found</td></tr>
+              <tr><td colSpan={5} className="px-4 py-8 text-center text-sm" style={{ color: MUTED }}>No projects found</td></tr>
             )}
           </tbody>
         </table>
@@ -185,45 +192,45 @@ function PaymentsTab() {
   const outstanding = total - collected;
 
   return (
-    <div className="p-6 space-y-4 bg-white">
+    <div className="p-6 space-y-4" style={{ background: SURFACE }}>
       <h2 className="text-xl font-semibold" style={{ fontFamily: 'Playfair Display, serif' }}>Payments</h2>
       <div className="grid grid-cols-3 gap-3">
         {[
           { label: 'Total Revenue', value: `€${total.toLocaleString()}`, color: '' },
-          { label: 'Collected', value: `€${collected.toLocaleString()}`, color: 'text-green-600' },
-          { label: 'Outstanding', value: `€${outstanding.toLocaleString()}`, color: 'text-amber-500' },
+          { label: 'Collected', value: `€${collected.toLocaleString()}`, color: 'hsl(152,60%,50%)' },
+          { label: 'Outstanding', value: `€${outstanding.toLocaleString()}`, color: 'hsl(38,92%,60%)' },
         ].map(s => (
-          <div key={s.label} className="rounded-xl border p-4" style={{ borderColor: 'hsl(220,10%,90%)' }}>
-            <p className="text-xs text-gray-500">{s.label}</p>
-            <p className={`text-xl font-semibold mt-1 ${s.color}`}>{s.value}</p>
+          <div key={s.label} className="rounded-xl border p-4" style={{ borderColor: BORDER, background: 'hsl(220,14%,15%)' }}>
+            <p className="text-xs" style={{ color: MUTED }}>{s.label}</p>
+            <p className="text-xl font-semibold mt-1" style={s.color ? { color: s.color } : {}}>{s.value}</p>
           </div>
         ))}
       </div>
-      <div className="rounded-xl border overflow-hidden" style={{ borderColor: 'hsl(220,10%,90%)' }}>
+      <div className="rounded-xl border overflow-hidden" style={{ borderColor: BORDER }}>
         <table className="w-full">
           <thead>
-            <tr className="border-b bg-gray-50" style={{ borderColor: 'hsl(220,10%,90%)' }}>
-              <th className="text-left text-xs font-medium text-gray-500 px-4 py-3">Client</th>
-              <th className="text-left text-xs font-medium text-gray-500 px-4 py-3">Total</th>
-              <th className="text-center text-xs font-medium text-gray-500 px-4 py-3">Deposit</th>
-              <th className="text-center text-xs font-medium text-gray-500 px-4 py-3">Full Payment</th>
-              <th className="text-right text-xs font-medium text-gray-500 px-4 py-3">Outstanding</th>
+            <tr className="border-b" style={{ borderColor: BORDER, background: 'hsl(220,14%,15%)' }}>
+              <th className="text-left text-xs font-medium px-4 py-3" style={{ color: MUTED }}>Client</th>
+              <th className="text-left text-xs font-medium px-4 py-3" style={{ color: MUTED }}>Total</th>
+              <th className="text-center text-xs font-medium px-4 py-3" style={{ color: MUTED }}>Deposit</th>
+              <th className="text-center text-xs font-medium px-4 py-3" style={{ color: MUTED }}>Full Payment</th>
+              <th className="text-right text-xs font-medium px-4 py-3" style={{ color: MUTED }}>Outstanding</th>
             </tr>
           </thead>
           <tbody>
             {demoProjects.map(p => {
               const owed = p.fullPaymentReceived ? 0 : p.price - (p.depositReceived ? p.depositAmount : 0);
               return (
-                <tr key={p.id} className="border-b last:border-0 hover:bg-gray-50 transition-colors" style={{ borderColor: 'hsl(220,10%,90%)' }}>
+                <tr key={p.id} className="border-b last:border-0 transition-colors hover:bg-white/[0.03]" style={{ borderColor: BORDER }}>
                   <td className="px-4 py-3 text-sm font-medium">{p.clientName}</td>
                   <td className="px-4 py-3 text-sm">€{p.price.toLocaleString()}</td>
                   <td className="px-4 py-3 text-center text-sm">
-                    {p.depositReceived ? <span className="text-green-600">✓</span> : <span className="text-red-500">✗</span>}
+                    {p.depositReceived ? <span style={{ color: 'hsl(152,60%,50%)' }}>✓</span> : <span style={{ color: 'hsl(0,65%,55%)' }}>✗</span>}
                   </td>
                   <td className="px-4 py-3 text-center text-sm">
-                    {p.fullPaymentReceived ? <span className="text-green-600">✓</span> : <span className="text-red-500">✗</span>}
+                    {p.fullPaymentReceived ? <span style={{ color: 'hsl(152,60%,50%)' }}>✓</span> : <span style={{ color: 'hsl(0,65%,55%)' }}>✗</span>}
                   </td>
-                  <td className="px-4 py-3 text-right text-sm font-semibold" style={{ color: owed > 0 ? 'hsl(40,90%,45%)' : 'hsl(152,60%,42%)' }}>
+                  <td className="px-4 py-3 text-right text-sm font-semibold" style={{ color: owed > 0 ? 'hsl(38,92%,60%)' : 'hsl(152,60%,50%)' }}>
                     €{owed.toLocaleString()}
                   </td>
                 </tr>
@@ -239,33 +246,37 @@ function PaymentsTab() {
 function ApprovalsTab() {
   const [state, setState] = useState<'pending' | 'approved' | 'changes'>('pending');
   return (
-    <div className="p-6 space-y-4 bg-white">
+    <div className="p-6 space-y-4" style={{ background: SURFACE }}>
       <h2 className="text-xl font-semibold" style={{ fontFamily: 'Playfair Display, serif' }}>Client Approval</h2>
-      <div className="rounded-xl border p-5 space-y-4" style={{ borderColor: 'hsl(220,10%,90%)' }}>
+      <div className="rounded-xl border p-5 space-y-4" style={{ borderColor: BORDER }}>
         <div className="flex items-center justify-between">
           <div>
             <p className="font-medium">Emma & James — Wedding Gallery</p>
-            <p className="text-sm text-gray-500">Delivered 15 Apr 2026</p>
+            <p className="text-sm" style={{ color: MUTED }}>Delivered 15 Apr 2026</p>
           </div>
-          <span className={`rounded-full border px-3 py-1 text-xs font-medium ${state === 'pending' ? 'bg-yellow-50 text-yellow-700 border-yellow-200' : state === 'approved' ? 'bg-green-50 text-green-700 border-green-200' : 'bg-orange-50 text-orange-700 border-orange-200'}`}>
+          <span className={`rounded-full border px-3 py-1 text-xs font-medium ${
+            state === 'pending' ? 'bg-yellow-500/15 text-yellow-300 border-yellow-500/30' :
+            state === 'approved' ? 'bg-green-500/15 text-green-300 border-green-500/30' :
+            'bg-orange-500/15 text-orange-300 border-orange-500/30'
+          }`}>
             {state === 'pending' ? 'Awaiting approval' : state === 'approved' ? '✓ Approved' : 'Changes requested'}
           </span>
         </div>
-        <div className="rounded-lg bg-gray-50 px-3 py-2 text-xs text-gray-500 font-mono">
+        <div className="rounded-lg px-3 py-2 text-xs font-mono" style={{ background: 'hsl(220,14%,18%)', color: MUTED }}>
           gigflowpro.com/approve/1?token=abc123
         </div>
         {state === 'pending' && (
           <div className="flex gap-2 pt-1">
-            <button onClick={() => setState('approved')} className="flex-1 rounded-lg py-2 text-sm font-medium text-white transition-colors" style={{ backgroundColor: 'hsl(152,60%,42%)' }}>
+            <button onClick={() => setState('approved')} className="flex-1 rounded-lg py-2 text-sm font-medium transition-colors" style={{ backgroundColor: 'hsl(152,60%,38%)', color: 'white' }}>
               Approve Gallery
             </button>
-            <button onClick={() => setState('changes')} className="flex-1 rounded-lg border py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors" style={{ borderColor: 'hsl(220,10%,90%)' }}>
+            <button onClick={() => setState('changes')} className="flex-1 rounded-lg border py-2 text-sm font-medium transition-colors hover:bg-white/[0.05]" style={{ borderColor: BORDER, color: MUTED }}>
               Request Changes
             </button>
           </div>
         )}
         {state !== 'pending' && (
-          <button onClick={() => setState('pending')} className="text-xs text-gray-400 hover:text-gray-600 transition-colors">↩ Reset demo</button>
+          <button onClick={() => setState('pending')} className="text-xs transition-colors" style={{ color: 'hsl(220,10%,45%)' }}>↩ Reset demo</button>
         )}
       </div>
     </div>
@@ -279,21 +290,21 @@ function RemindersTab() {
     { to: 'TyrnaGroup', subject: 'Deposit reminder — TyrnaGroup', date: 'Apr 7, 2026 · 08:30', preview: 'Hi TyrnaGroup, your deposit for the upcoming shoot has not yet been received. Your shoot is in 14 days.' },
   ];
   return (
-    <div className="p-6 space-y-4 bg-white">
+    <div className="p-6 space-y-4" style={{ background: SURFACE }}>
       <div>
         <h2 className="text-xl font-semibold" style={{ fontFamily: 'Playfair Display, serif' }}>Auto Reminders</h2>
-        <p className="text-sm text-gray-500 mt-0.5">Sent automatically. You never have to chase a client manually.</p>
+        <p className="text-sm mt-0.5" style={{ color: MUTED }}>Sent automatically. You never have to chase a client manually.</p>
       </div>
       <div className="space-y-3">
         {reminders.map(r => (
-          <div key={r.subject} className="rounded-xl border p-4" style={{ borderColor: 'hsl(220,10%,90%)' }}>
+          <div key={r.subject} className="rounded-xl border p-4" style={{ borderColor: BORDER }}>
             <div className="flex items-start justify-between gap-2">
               <div className="space-y-0.5">
                 <p className="text-sm font-medium">{r.subject}</p>
-                <p className="text-xs text-gray-500">To: {r.to}</p>
-                <p className="text-xs text-gray-400 mt-1">{r.preview}</p>
+                <p className="text-xs" style={{ color: MUTED }}>To: {r.to}</p>
+                <p className="text-xs mt-1" style={{ color: 'hsl(220,10%,45%)' }}>{r.preview}</p>
               </div>
-              <span className="text-xs text-gray-400 whitespace-nowrap">{r.date}</span>
+              <span className="text-xs whitespace-nowrap" style={{ color: 'hsl(220,10%,45%)' }}>{r.date}</span>
             </div>
           </div>
         ))}
@@ -313,25 +324,25 @@ export default function LandingDemo() {
   ] as const;
 
   return (
-    <div className="rounded-2xl border overflow-hidden shadow-2xl" style={{ borderColor: 'hsl(220,10%,90%)', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.1)' }}>
+    <div className="rounded-2xl border overflow-hidden shadow-2xl" style={{ borderColor: BORDER, boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5)' }}>
       {/* Browser bar */}
-      <div className="flex items-center gap-1.5 px-4 py-3 border-b" style={{ backgroundColor: 'hsl(220,10%,96%)', borderColor: 'hsl(220,10%,90%)' }}>
-        <div className="h-2.5 w-2.5 rounded-full bg-red-300" />
-        <div className="h-2.5 w-2.5 rounded-full bg-yellow-300" />
-        <div className="h-2.5 w-2.5 rounded-full bg-green-300" />
-        <div className="mx-auto text-xs text-gray-400">gigflowpro.com/dashboard</div>
+      <div className="flex items-center gap-1.5 px-4 py-3 border-b" style={{ backgroundColor: SURFACE2, borderColor: BORDER }}>
+        <div className="h-2.5 w-2.5 rounded-full bg-red-400/60" />
+        <div className="h-2.5 w-2.5 rounded-full bg-yellow-400/60" />
+        <div className="h-2.5 w-2.5 rounded-full bg-green-400/60" />
+        <div className="mx-auto text-xs" style={{ color: 'hsl(220,10%,48%)' }}>app.gigflowpro.com/dashboard</div>
       </div>
       {/* Tab bar */}
-      <div className="flex justify-center px-4 pt-3 pb-0 border-b" style={{ backgroundColor: 'hsl(220,10%,96%)', borderColor: 'hsl(220,10%,90%)' }}>
-        <div className="flex rounded-xl p-1 gap-1 overflow-x-auto" style={{ backgroundColor: 'hsl(220,10%,92%)' }}>
+      <div className="flex justify-center px-4 pt-3 pb-0 border-b" style={{ backgroundColor: SURFACE2, borderColor: BORDER }}>
+        <div className="flex rounded-xl p-1 gap-1 overflow-x-auto" style={{ backgroundColor: 'hsl(220,14%,20%)' }}>
           {tabs.map(({ key, label }) => (
             <button
               key={key}
               onClick={() => setActiveTab(key)}
               className="px-4 py-1.5 rounded-lg text-sm font-medium transition-colors whitespace-nowrap"
               style={activeTab === key
-                ? { backgroundColor: 'white', color: 'hsl(40,90%,45%)', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }
-                : { color: 'hsl(220,10%,50%)' }}
+                ? { backgroundColor: 'hsl(220,14%,28%)', color: 'hsl(40,90%,60%)', boxShadow: '0 1px 3px rgba(0,0,0,0.3)' }
+                : { color: MUTED }}
             >
               {label}
             </button>

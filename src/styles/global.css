@@ -3,17 +3,17 @@
 @plugin "@tailwindcss/typography";
 
 @theme inline {
-  --color-background: hsl(40, 20%, 98%);
-  --color-foreground: hsl(220, 15%, 13%);
-  --color-card: hsl(0, 0%, 100%);
-  --color-card-foreground: hsl(220, 15%, 13%);
-  --color-border: hsl(220, 10%, 90%);
-  --color-muted: hsl(220, 10%, 95%);
-  --color-muted-foreground: hsl(220, 10%, 50%);
+  --color-background: hsl(220, 14%, 9%);
+  --color-foreground: hsl(40, 20%, 93%);
+  --color-card: hsl(220, 14%, 13%);
+  --color-card-foreground: hsl(40, 20%, 93%);
+  --color-border: hsl(220, 10%, 22%);
+  --color-muted: hsl(220, 14%, 14%);
+  --color-muted-foreground: hsl(220, 10%, 58%);
   --color-accent: hsl(40, 90%, 55%);
   --color-accent-foreground: hsl(220, 15%, 10%);
-  --color-primary: hsl(220, 15%, 13%);
-  --color-primary-foreground: hsl(40, 20%, 98%);
+  --color-primary: hsl(40, 20%, 93%);
+  --color-primary-foreground: hsl(220, 15%, 10%);
   --color-success: hsl(152, 60%, 42%);
   --color-success-foreground: hsl(0, 0%, 100%);
   --color-destructive: hsl(0, 72%, 51%);
@@ -37,10 +37,10 @@
 }
 
 @layer base {
-  * { border-color: hsl(220, 10%, 90%); }
+  * { border-color: hsl(220, 10%, 22%); }
   body {
-    background-color: hsl(40, 20%, 98%);
-    color: hsl(220, 15%, 13%);
+    background-color: hsl(220, 14%, 9%);
+    color: hsl(40, 20%, 93%);
     font-family: 'Inter', sans-serif;
   }
   h1, h2, h3 { font-family: 'Playfair Display', serif; }

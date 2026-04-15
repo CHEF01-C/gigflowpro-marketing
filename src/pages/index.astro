@@ -34,14 +34,14 @@ const schema = {
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
 
   <!-- Nav -->
-  <nav class="fixed top-0 left-0 right-0 z-50 border-b" style="background: rgba(253,251,247,0.85); backdrop-filter: blur(12px); border-color: hsl(220,10%,90%)">
+  <nav class="fixed top-0 left-0 right-0 z-50 border-b" style="background: rgba(14,16,23,0.90); backdrop-filter: blur(12px); border-color: hsl(220,10%,22%)">
     <div class="max-w-6xl mx-auto flex items-center justify-between px-6 h-16">
       <div class="flex items-center gap-2.5">
         <img src="/favicon-32x32.png" alt="GigFlow Pro" class="h-8 w-8 rounded-lg object-cover" />
         <span class="font-semibold tracking-tight">GigFlow Pro</span>
       </div>
       <div class="flex items-center gap-3">
-        <a href={`${APP_URL}/login`} class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors rounded-lg hover:bg-gray-100">Log In</a>
+        <a href={`${APP_URL}/login`} class="px-4 py-2 text-sm font-medium transition-colors rounded-lg" style="color: hsl(220,10%,60%); hover:color: hsl(40,20%,93%)">Log In</a>
         <a href={`${APP_URL}/signup`} class="px-4 py-2 text-sm font-semibold rounded-lg transition-colors" style="background: hsl(40,90%,55%); color: hsl(220,15%,10%)">Get Started</a>
       </div>
     </div>
@@ -51,42 +51,42 @@ const schema = {
   <section class="pt-32 pb-20 px-6">
     <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
       <div class="space-y-6" style="animation: fade-in 0.4s ease-out">
-        <div class="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium border" style="background: hsl(40,90%,55%,0.1); color: hsl(40,90%,40%); border-color: hsl(40,90%,55%,0.2)">
+        <div class="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium border" style="background: hsl(40,90%,55%,0.12); color: hsl(40,90%,65%); border-color: hsl(40,90%,55%,0.25)">
           ★ Built for freelance photographers
         </div>
         <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1]">
           Stop losing money to missed follow-ups
         </h1>
-        <p class="text-lg max-w-lg leading-relaxed" style="color: hsl(220,10%,50%)">
+        <p class="text-lg max-w-lg leading-relaxed" style="color: hsl(220,10%,58%)">
           The project management tool that covers your entire workflow — from booking to final payment — in one clean dashboard.
         </p>
         <div class="flex flex-col sm:flex-row gap-3">
-          <a href={`${APP_URL}/signup`} class="inline-flex items-center justify-center gap-2 h-12 px-8 rounded-xl text-base font-semibold transition-colors" style="background: hsl(220,15%,13%); color: hsl(40,20%,98%)">
+          <a href={`${APP_URL}/signup`} class="inline-flex items-center justify-center gap-2 h-12 px-8 rounded-xl text-base font-semibold transition-colors" style="background: hsl(40,20%,93%); color: hsl(220,15%,10%)">
             Start Free Trial →
           </a>
-          <a href="#features" class="inline-flex items-center justify-center h-12 px-8 rounded-xl text-base font-medium border transition-colors hover:bg-gray-50" style="border-color: hsl(220,10%,90%)">
+          <a href="#features" class="inline-flex items-center justify-center h-12 px-8 rounded-xl text-base font-medium border transition-colors hover:bg-white/[0.06]" style="border-color: hsl(220,10%,28%); color: hsl(40,20%,85%)">
             See How It Works
           </a>
         </div>
         <p class="text-xs" style="color: hsl(220,10%,50%)">€29/month · Cancel anytime · 14-day free trial</p>
       </div>
       <div style="animation: fade-in 0.4s ease-out 0.2s both">
-        <div class="rounded-2xl overflow-hidden border shadow-2xl" style="border-color: hsl(220,10%,90%); box-shadow: 0 25px 50px -12px rgba(0,0,0,0.1)">
-          <div class="flex items-center gap-1.5 px-4 py-2.5 border-b" style="background: hsl(220,10%,96%); border-color: hsl(220,10%,90%)">
-            <div class="h-2 w-2 rounded-full bg-red-300"></div>
-            <div class="h-2 w-2 rounded-full bg-yellow-300"></div>
-            <div class="h-2 w-2 rounded-full bg-green-300"></div>
-            <span class="mx-auto text-[10px]" style="color: hsl(220,10%,60%)">gigflowpro.com/dashboard</span>
+        <div class="rounded-2xl overflow-hidden border shadow-2xl" style="border-color: hsl(220,10%,22%); box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5)">
+          <div class="flex items-center gap-1.5 px-4 py-2.5 border-b" style="background: hsl(220,14%,16%); border-color: hsl(220,10%,22%)">
+            <div class="h-2 w-2 rounded-full bg-red-400/60"></div>
+            <div class="h-2 w-2 rounded-full bg-yellow-400/60"></div>
+            <div class="h-2 w-2 rounded-full bg-green-400/60"></div>
+            <span class="mx-auto text-[10px]" style="color: hsl(220,10%,48%)">gigflowpro.com/dashboard</span>
           </div>
           <img src="/screenshots/Dashboard1.png" alt="GigFlow Pro Dashboard — project management for photographers" class="w-full h-auto" />
         </div>
-        <div class="mt-[-1.5rem] ml-[-1rem] inline-flex items-center gap-3 rounded-xl border p-4 shadow-lg" style="background: white; border-color: hsl(220,10%,90%)">
-          <div class="h-10 w-10 rounded-full flex items-center justify-center" style="background: hsl(152,60%,42%,0.1)">
-            <span style="color: hsl(152,60%,42%)">✓</span>
+        <div class="mt-[-1.5rem] ml-[-1rem] inline-flex items-center gap-3 rounded-xl border p-4 shadow-lg" style="background: hsl(220,14%,13%); border-color: hsl(220,10%,22%)">
+          <div class="h-10 w-10 rounded-full flex items-center justify-center" style="background: hsl(152,60%,42%,0.2)">
+            <span style="color: hsl(152,60%,50%)">✓</span>
           </div>
           <div>
             <p class="text-xs font-medium">Client Approved</p>
-            <p class="text-xs" style="color: hsl(220,10%,50%)">Emma & James — Wedding</p>
+            <p class="text-xs" style="color: hsl(220,10%,58%)">Emma & James — Wedding</p>
           </div>
         </div>
       </div>
@@ -94,26 +94,26 @@ const schema = {
   </section>
 
   <!-- Status flow -->
-  <section class="py-16 px-6 border-y" style="background: hsl(220,10%,97%); border-color: hsl(220,10%,90%)">
+  <section class="py-16 px-6 border-y" style="background: hsl(220,14%,12%); border-color: hsl(220,10%,22%)">
     <div class="max-w-4xl mx-auto text-center space-y-8">
       <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">
         A status flow that mirrors how you actually work
       </h2>
       <div class="flex items-center justify-center gap-2 flex-wrap">
         {[
-          { label: 'Booked', color: 'hsl(210,80%,55%)' },
-          { label: 'Shot', color: 'hsl(40,90%,55%)' },
-          { label: 'Editing', color: 'hsl(38,92%,50%)' },
-          { label: 'Delivered', color: 'hsl(220,10%,60%)' },
-          { label: 'Approved', color: 'hsl(152,60%,42%)' },
-          { label: 'Paid', color: 'hsl(152,60%,42%)' },
+          { label: 'Booked', color: 'hsl(210,80%,60%)' },
+          { label: 'Shot', color: 'hsl(40,90%,60%)' },
+          { label: 'Editing', color: 'hsl(38,92%,55%)' },
+          { label: 'Delivered', color: 'hsl(220,10%,65%)' },
+          { label: 'Approved', color: 'hsl(152,60%,50%)' },
+          { label: 'Paid', color: 'hsl(152,60%,50%)' },
         ].map((step, i, arr) => (
           <div class="flex items-center gap-2">
-            <div class="flex items-center gap-2 rounded-full border px-4 py-2" style={`border-color: ${step.color}40; background: ${step.color}15`}>
+            <div class="flex items-center gap-2 rounded-full border px-4 py-2" style={`border-color: ${step.color}40; background: ${step.color}18`}>
               <div class="h-2 w-2 rounded-full" style={`background: ${step.color}`}></div>
               <span class="text-sm font-medium" style={`color: ${step.color}`}>{step.label}</span>
             </div>
-            {i < arr.length - 1 && <span class="text-gray-300 hidden sm:block">→</span>}
+            {i < arr.length - 1 && <span class="hidden sm:block" style="color: hsl(220,10%,35%)">→</span>}
           </div>
         ))}
       </div>
@@ -121,35 +121,35 @@ const schema = {
   </section>
 
   <!-- Features (interactive demo) -->
-  <section id="features" class="py-20 px-6 border-t" style="border-color: hsl(220,10%,90%)">
+  <section id="features" class="py-20 px-6 border-t" style="border-color: hsl(220,10%,22%)">
     <div class="max-w-6xl mx-auto space-y-10">
       <div class="text-center space-y-3">
         <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">See it in action</h2>
-        <p style="color: hsl(220,10%,50%)">Everything you need. Nothing you don't.</p>
+        <p style="color: hsl(220,10%,58%)">Everything you need. Nothing you don't.</p>
       </div>
       <LandingDemo client:load />
     </div>
   </section>
 
   <!-- Pricing -->
-  <section class="py-20 px-6 border-t" style="background: hsl(220,10%,97%); border-color: hsl(220,10%,90%)">
+  <section class="py-20 px-6 border-t" style="background: hsl(220,14%,12%); border-color: hsl(220,10%,22%)">
     <div class="max-w-md mx-auto text-center space-y-6">
       <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Simple pricing</h2>
-      <div class="rounded-2xl border p-8 space-y-4 shadow-sm" style="background: white; border-color: hsl(220,10%,90%)">
-        <p class="text-sm" style="color: hsl(220,10%,50%)">Everything included</p>
+      <div class="rounded-2xl border p-8 space-y-4 shadow-sm" style="background: hsl(220,14%,13%); border-color: hsl(220,10%,22%)">
+        <p class="text-sm" style="color: hsl(220,10%,58%)">Everything included</p>
         <div class="flex items-baseline justify-center gap-1">
           <span class="text-4xl font-bold font-sans">€29</span>
-          <span style="color: hsl(220,10%,50%)">/month</span>
+          <span style="color: hsl(220,10%,58%)">/month</span>
         </div>
         <p class="text-xs" style="color: hsl(220,10%,50%)">or €250/year (save €98)</p>
-        <a href={`${APP_URL}/signup`} class="block w-full h-12 leading-[3rem] rounded-xl text-base font-semibold transition-colors" style="background: hsl(220,15%,13%); color: hsl(40,20%,98%)">
+        <a href={`${APP_URL}/signup`} class="block w-full h-12 leading-[3rem] rounded-xl text-base font-semibold transition-colors" style="background: hsl(40,20%,93%); color: hsl(220,15%,10%)">
           Start 14-Day Free Trial
         </a>
         <p class="text-xs" style="color: hsl(220,10%,50%)">Cancel anytime · Early access members lock in this price forever.</p>
         <ul class="grid grid-cols-2 gap-2 pt-2 text-left">
           {['Unlimited projects', 'Client approval links', 'Payment tracking', 'Auto reminders', 'Status workflow', 'Cancel anytime'].map(f => (
-            <li class="flex items-center gap-2 text-sm" style="color: hsl(220,10%,50%)">
-              <span style="color: hsl(152,60%,42%)">✓</span> {f}
+            <li class="flex items-center gap-2 text-sm" style="color: hsl(220,10%,60%)">
+              <span style="color: hsl(152,60%,50%)">✓</span> {f}
             </li>
           ))}
         </ul>
@@ -158,38 +158,38 @@ const schema = {
   </section>
 
   <!-- Blog teaser -->
-  <section class="py-16 px-6 border-t" style="border-color: hsl(220,10%,90%)">
+  <section class="py-16 px-6 border-t" style="border-color: hsl(220,10%,22%)">
     <div class="max-w-4xl mx-auto text-center space-y-4">
       <h2 class="text-2xl font-bold tracking-tight">Resources for freelance photographers</h2>
-      <p style="color: hsl(220,10%,50%)">Tips on workflow, client management, and growing your photography business.</p>
-      <a href="/blog" class="inline-flex items-center gap-2 rounded-lg border px-5 py-2.5 text-sm font-medium transition-colors hover:bg-gray-50" style="border-color: hsl(220,10%,90%)">
+      <p style="color: hsl(220,10%,58%)">Tips on workflow, client management, and growing your photography business.</p>
+      <a href="/blog" class="inline-flex items-center gap-2 rounded-lg border px-5 py-2.5 text-sm font-medium transition-colors hover:bg-white/[0.06]" style="border-color: hsl(220,10%,28%); color: hsl(40,20%,85%)">
         Read the blog →
       </a>
     </div>
   </section>
 
   <!-- Contact -->
-  <section class="py-20 px-6 border-t" style="border-color: hsl(220,10%,90%)">
+  <section class="py-20 px-6 border-t" style="border-color: hsl(220,10%,22%)">
     <div class="max-w-md mx-auto text-center space-y-6">
       <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Get in touch</h2>
-      <p class="text-sm" style="color: hsl(220,10%,50%)">Questions before signing up? We'll get back to you within 24 hours.</p>
+      <p class="text-sm" style="color: hsl(220,10%,58%)">Questions before signing up? We'll get back to you within 24 hours.</p>
       <ContactForm client:load />
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="py-8 px-6 border-t" style="border-color: hsl(220,10%,90%)">
+  <footer class="py-8 px-6 border-t" style="border-color: hsl(220,10%,22%)">
     <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
       <div class="flex items-center gap-2">
         <img src="/favicon-32x32.png" alt="GigFlow Pro" class="h-6 w-6 rounded-md object-cover" />
         <span class="text-sm" style="color: hsl(220,10%,50%)">GigFlow Pro</span>
       </div>
       <div class="flex flex-wrap justify-center gap-4 text-xs" style="color: hsl(220,10%,50%)">
-        <a href="/terms" class="hover:text-gray-900 transition-colors">Terms of Service</a>
-        <a href="/privacy" class="hover:text-gray-900 transition-colors">Privacy Policy</a>
-        <a href="/refunds" class="hover:text-gray-900 transition-colors">Refund Policy</a>
-        <a href="/cookies" class="hover:text-gray-900 transition-colors">Cookie Policy</a>
-        <a href="/blog" class="hover:text-gray-900 transition-colors">Blog</a>
+        <a href="/terms" class="hover:text-white transition-colors">Terms of Service</a>
+        <a href="/privacy" class="hover:text-white transition-colors">Privacy Policy</a>
+        <a href="/refunds" class="hover:text-white transition-colors">Refund Policy</a>
+        <a href="/cookies" class="hover:text-white transition-colors">Cookie Policy</a>
+        <a href="/blog" class="hover:text-white transition-colors">Blog</a>
       </div>
       <p class="text-xs" style="color: hsl(220,10%,50%)">© 2026 Norda Solutions</p>
     </div>
