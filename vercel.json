@@ -1,10 +1,11 @@
 {
   "rewrites": [
-    { "source": "/dashboard/:path*", "destination": "https://gigflowpro-app.vercel.app/dashboard/:path*" },
-    { "source": "/login", "destination": "https://gigflowpro-app.vercel.app/login" },
-    { "source": "/signup", "destination": "https://gigflowpro-app.vercel.app/signup" },
-    { "source": "/approve/:path*", "destination": "https://gigflowpro-app.vercel.app/approve/:path*" },
-    { "source": "/settings/:path*", "destination": "https://gigflowpro-app.vercel.app/settings/:path*" },
-    { "source": "/projects/:path*", "destination": "https://gigflowpro-app.vercel.app/projects/:path*" }
+    { "source": "/dashboard/:path*", "destination": "https://saas-gigflow-pro.vercel.app/dashboard/:path*" },
+    { "source": "/login", "destination": "https://saas-gigflow-pro.vercel.app/login" },
+    { "source": "/signup", "destination": "https://saas-gigflow-pro.vercel.app/signup" },
+    { "source": "/approve/:path*", "destination": "https://saas-gigflow-pro.vercel.app/approve/:path*" },
+    { "source": "/settings/:path*", "destination": "https://saas-gigflow-pro.vercel.app/settings/:path*" },
+    { "source": "/projects/:path*", "destination": "https://saas-gigflow-pro.vercel.app/projects/:path*" },
+    { "source": "/payments/:path*", "destination": "https://saas-gigflow-pro.vercel.app/payments/:path*" }
   ]
 }
