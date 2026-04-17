@@ -12,13 +12,57 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+
+const canonicalUrl = `https://www.gigflowpro.com/blog/${post.id}`;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": post.data.title,
+  "description": post.data.description,
+  "url": canonicalUrl,
+  "datePublished": post.data.publishDate.toISOString(),
+  "author": {
+    "@type": "Organization",
+    "name": "GigFlow Pro",
+    "url": "https://www.gigflowpro.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "GigFlow Pro",
+    "url": "https://www.gigflowpro.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.gigflowpro.com/favicon-32x32.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": canonicalUrl
+  },
+  ...(post.data.ogImage ? { "image": post.data.ogImage } : {})
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.gigflowpro.com" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.gigflowpro.com/blog" },
+    { "@type": "ListItem", "position": 3, "name": post.data.title, "item": canonicalUrl }
+  ]
+};
 ---
 
 <Layout
   title={`${post.data.title} — GigFlow Pro Blog`}
   description={post.data.description}
+  canonical={canonicalUrl}
   ogImage={post.data.ogImage}
+  ogType="article"
 >
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <div style="background: hsl(40,20%,98%); color: hsl(220,15%,13%); min-height: 100vh">
     <nav class="fixed top-0 left-0 right-0 z-50 border-b" style="background: rgba(253,251,247,0.92); backdrop-filter: blur(12px); border-color: hsl(220,10%,90%)">
       <div class="max-w-6xl mx-auto flex items-center justify-between px-6 h-16">

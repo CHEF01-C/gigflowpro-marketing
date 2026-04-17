@@ -7,6 +7,7 @@ interface Props {
   description?: string;
   canonical?: string;
   ogImage?: string;
+  ogType?: string;
 }
 
 const {
@@ -14,6 +15,7 @@ const {
   description = 'Project management software built for freelance photographers. Track bookings, payments, client approvals and automate follow-up reminders — all in one dashboard.',
   canonical = Astro.url.href,
   ogImage,
+  ogType = 'website',
 } = Astro.props;
 ---
 
@@ -32,7 +34,7 @@ const {
 
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonical} />
     {ogImage && <meta property="og:image" content={ogImage} />}
 
