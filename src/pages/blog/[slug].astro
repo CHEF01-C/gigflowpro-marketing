@@ -13,6 +13,11 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 
+const relatedPosts = (await getCollection('blog'))
+  .filter(p => p.id !== post.id)
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+  .slice(0, 2);
+
 const canonicalUrl = `https://www.gigflowpro.com/blog/${post.id}`;
 
 const articleSchema = {
@@ -98,6 +103,22 @@ const breadcrumbSchema = {
         <article class="prose prose-gray max-w-none prose-headings:font-semibold prose-a:text-amber-600 prose-a:no-underline hover:prose-a:underline prose-h1:hidden" style="color: hsl(220,15%,20%)">
           <Content />
         </article>
+
+        <!-- Related posts -->
+        {relatedPosts.length > 0 && (
+          <div class="mt-16 space-y-4">
+            <h2 class="text-lg font-semibold" style="color: hsl(220,15%,13%)">More from the blog</h2>
+            <div class="grid sm:grid-cols-2 gap-4">
+              {relatedPosts.map(p => (
+                <a href={`/blog/${p.id}`} class="block rounded-2xl border p-5 space-y-2 hover:border-amber-300 transition-colors" style="background: hsl(220,10%,97%); border-color: hsl(220,10%,88%)">
+                  <p class="text-xs" style="color: hsl(220,10%,50%)">{p.data.publishDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
+                  <p class="font-semibold text-sm leading-snug" style="color: hsl(220,15%,13%)">{p.data.title}</p>
+                  <p class="text-xs leading-relaxed" style="color: hsl(220,10%,50%)">{p.data.description}</p>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
 
         <!-- CTA -->
         <div class="mt-16 rounded-2xl border p-8 text-center space-y-4" style="background: hsl(220,10%,95%); border-color: hsl(220,10%,88%)">
