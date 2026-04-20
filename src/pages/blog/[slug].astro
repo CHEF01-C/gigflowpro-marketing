@@ -60,7 +60,7 @@ const breadcrumbSchema = {
 ---
 
 <Layout
-  title={`${post.data.title} — GigFlow Pro Blog`}
+  title={`${post.data.seoTitle ?? post.data.title} | GigFlow Pro`}
   description={post.data.description}
   canonical={canonicalUrl}
   ogImage={post.data.ogImage}

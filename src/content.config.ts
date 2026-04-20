@@ -10,6 +10,7 @@ const blog = defineCollection({
     author: z.string().default('GigFlow Pro'),
     tags: z.array(z.string()).default([]),
     ogImage: z.string().optional(),
+    seoTitle: z.string().optional(),
   }),
 });
 
