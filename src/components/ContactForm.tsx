@@ -23,9 +23,13 @@ export default function ContactForm() {
         },
         body: JSON.stringify({ name, email, message }),
       });
-      if (!res.ok) throw new Error();
+      if (!res.ok) throw new Error(await res.text());
       setStatus('sent');
-    } catch {
+      setName('');
+      setEmail('');
+      setMessage('');
+    } catch (err) {
+      console.error('Contact form error:', err);
       setStatus('error');
     }
   };
